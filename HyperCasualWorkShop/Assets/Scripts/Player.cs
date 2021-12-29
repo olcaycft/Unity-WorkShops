@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -99,4 +100,14 @@ public class Player : MonoBehaviour
             inputDrag = Vector2.zero;
         }
     }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.collider.gameObject.name=="GameObject")
+        {
+            Debug.Log(col.gameObject.name);
+        }
+    }
+    
+    
 }
