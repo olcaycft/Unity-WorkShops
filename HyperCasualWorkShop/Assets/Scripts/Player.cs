@@ -7,18 +7,31 @@ using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform sideMovementRoot;
-    [SerializeField] private Transform leftLimit;
-    [SerializeField] private Transform rightLimit;
+    [SerializeField] private GameObject girlObject;
+    [SerializeField] private GameObject boyObject;
+    
+    [SerializeField] private Transform boySideMovementRoot;
+    [SerializeField] private Transform girlSideMovementRoot;
+    
+    [SerializeField] private Transform boyLeftLimit;
+    [SerializeField] private Transform boyRightLimit;
+    
+    [SerializeField] private Transform girlLeftLimit;
+    [SerializeField] private Transform girlRightLimit;
+    
     [SerializeField] private float speed = 10f;
     [SerializeField] private float sideMovementSensitivity = 1f;
+    
 
     private Vector2 inputDrag;
 
     private Vector2 previousMousePosition;
 
-    private float leftLimitX => leftLimit.localPosition.x;
-    private float rightLimitX => rightLimit.localPosition.x;
+    private float boyLeftLimitX => boyLeftLimit.localPosition.x;
+    private float boyRightLimitX => boyRightLimit.localPosition.x;
+    
+    private float girlLeftLimitX => girlLeftLimit.localPosition.x;
+    private float girlRightLimitX => girlRightLimit.localPosition.x;
     void Update()
     {
         ForwardMovement();
@@ -28,16 +41,45 @@ public class Player : MonoBehaviour
 
     private void ForwardMovement()
     {
-        //transform.position += Vector3.forward * Time.deltaTime *speed;
-        transform.Translate(Vector3.forward*speed*Time.deltaTime);
+        ThisObjectMovement();
+        BoyForwardMovement();
+        GirlForwardMovement();
+    }
+
+    private void ThisObjectMovement()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+    private void BoyForwardMovement()
+    {
+        boyObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    private void GirlForwardMovement()
+    {
+        girlObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void SideMovement()
     {
-        var lovalPos = sideMovementRoot.localPosition;
-        lovalPos += Vector3.right * inputDrag.x * sideMovementSensitivity;
-        lovalPos.x = Mathf.Clamp(lovalPos.x,leftLimitX,rightLimitX);
-        sideMovementRoot.localPosition = lovalPos;
+        BoySideMovement();
+        GirlSideMovement();
+    }
+
+    private void BoySideMovement()
+    {
+        var localPosBoy = boySideMovementRoot.localPosition;
+        localPosBoy += Vector3.right * inputDrag.x * sideMovementSensitivity;
+        localPosBoy.x = Mathf.Clamp(localPosBoy.x,boyLeftLimitX,boyRightLimitX);
+        boySideMovementRoot.localPosition = localPosBoy;
+    }
+
+    private void GirlSideMovement()
+    {
+        var localPosGirl = girlSideMovementRoot.localPosition;
+        localPosGirl -= Vector3.right * inputDrag.x * sideMovementSensitivity;
+        localPosGirl.x = Mathf.Clamp(localPosGirl.x,girlLeftLimitX,girlRightLimitX);
+        girlSideMovementRoot.localPosition = localPosGirl;
     }
 
     private void HandleInput()
