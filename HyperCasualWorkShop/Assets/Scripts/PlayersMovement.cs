@@ -6,7 +6,7 @@ using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class Player : MonoBehaviour
+public class PlayersMovement : MonoBehaviour
 {
     [SerializeField] private GameObject girlObject;
     [SerializeField] private GameObject boyObject;
@@ -100,14 +100,5 @@ public class Player : MonoBehaviour
             inputDrag = Vector2.zero;
         }
     }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.collider.gameObject.name=="GameObject")
-        {
-            Debug.Log(col.gameObject.name);
-        }
-    }
-    
     
 }
