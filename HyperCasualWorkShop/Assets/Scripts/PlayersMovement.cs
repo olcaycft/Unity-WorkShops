@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
+using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -10,19 +9,19 @@ public class PlayersMovement : MonoBehaviour
 {
     [SerializeField] private GameObject girlObject;
     [SerializeField] private GameObject boyObject;
-    
+
     [SerializeField] private Transform boySideMovementRoot;
     [SerializeField] private Transform girlSideMovementRoot;
-    
+
     [SerializeField] private Transform boyLeftLimit;
     [SerializeField] private Transform boyRightLimit;
-    
+
     [SerializeField] private Transform girlLeftLimit;
     [SerializeField] private Transform girlRightLimit;
-    
+
     [SerializeField] private float speed = 10f;
     [SerializeField] private float sideMovementSensitivity = 1f;
-    
+
 
     private Vector2 inputDrag;
 
@@ -30,9 +29,12 @@ public class PlayersMovement : MonoBehaviour
 
     private float boyLeftLimitX => boyLeftLimit.localPosition.x;
     private float boyRightLimitX => boyRightLimit.localPosition.x;
-    
+
     private float girlLeftLimitX => girlLeftLimit.localPosition.x;
     private float girlRightLimitX => girlRightLimit.localPosition.x;
+
+
+
     void Update()
     {
         ForwardMovement();
@@ -42,20 +44,19 @@ public class PlayersMovement : MonoBehaviour
 
     private void ForwardMovement()
     {
-        ThisObjectMovement();
         BoyForwardMovement();
         GirlForwardMovement();
     }
 
-    private void ThisObjectMovement()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
     private void BoyForwardMovement()
     {
         boyObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    /*private void ThisForward()
+    {
+        transform.Translate(Vector3.forward*speed*Time.deltaTime);
+    }*/
     private void GirlForwardMovement()
     {
         girlObject.transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -71,7 +72,7 @@ public class PlayersMovement : MonoBehaviour
     {
         var localPosBoy = boySideMovementRoot.localPosition;
         localPosBoy += Vector3.right * inputDrag.x * sideMovementSensitivity;
-        localPosBoy.x = Mathf.Clamp(localPosBoy.x,boyLeftLimitX,boyRightLimitX);
+        localPosBoy.x = Mathf.Clamp(localPosBoy.x, boyLeftLimitX, boyRightLimitX);
         boySideMovementRoot.localPosition = localPosBoy;
     }
 
@@ -79,7 +80,7 @@ public class PlayersMovement : MonoBehaviour
     {
         var localPosGirl = girlSideMovementRoot.localPosition;
         localPosGirl -= Vector3.right * inputDrag.x * sideMovementSensitivity;
-        localPosGirl.x = Mathf.Clamp(localPosGirl.x,girlLeftLimitX,girlRightLimitX);
+        localPosGirl.x = Mathf.Clamp(localPosGirl.x, girlLeftLimitX, girlRightLimitX);
         girlSideMovementRoot.localPosition = localPosGirl;
     }
 
@@ -89,9 +90,10 @@ public class PlayersMovement : MonoBehaviour
         {
             previousMousePosition = Input.mousePosition;
         }
+
         if (Input.GetMouseButton(0))
         {
-            var deltaMouse = (Vector2)Input.mousePosition - previousMousePosition;
+            var deltaMouse = (Vector2) Input.mousePosition - previousMousePosition;
             inputDrag = deltaMouse;
             previousMousePosition = Input.mousePosition;
         }
@@ -100,5 +102,4 @@ public class PlayersMovement : MonoBehaviour
             inputDrag = Vector2.zero;
         }
     }
-    
 }
