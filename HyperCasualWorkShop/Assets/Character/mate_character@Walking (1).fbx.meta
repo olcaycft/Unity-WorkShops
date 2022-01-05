@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 8063c36756c78254e988e14fae1e39c5
+guid: 7412d55a947f66e408128da8b5c605f6
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
+    second: Walking (1)
+  - first:
+      74: -1610863427237328480
     second: Walking
   externalObjects: {}
   materials:
@@ -26,7 +29,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -47,7 +50,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
