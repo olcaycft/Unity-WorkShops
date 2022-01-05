@@ -16,5 +16,6 @@ public class PlayerNavMesh : MonoBehaviour
     private void Update()
     {
         navMeshAgent.destination = destination.position;
+        transform.position+=transform.forward*Time.deltaTime*6f;
     }
 }
