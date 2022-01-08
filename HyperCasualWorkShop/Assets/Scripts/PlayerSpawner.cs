@@ -19,7 +19,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             var player = objectPool.GetPooledObject();
 
-            player.transform.position = Vector3.zero;
+            player.transform.position = transform.position;
             
             
             yield return new WaitForSeconds(spawnInterval);

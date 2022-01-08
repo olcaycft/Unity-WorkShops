@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6371744679614203545, guid: 61947f143783375439c11ca84441848a, type: 3}
-  poolSize: 100
+  poolSize: 15
 --- !u!4 &835692061
 Transform:
   m_ObjectHideFlags: 0
