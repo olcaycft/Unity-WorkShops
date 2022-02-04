@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class PlaneGenerator : MonoBehaviour
+namespace Plane
 {
-    [SerializeField] private GameObject planePrefab;
-    [SerializeField] private GameObject obstaclePrefab;
-    [SerializeField] private Vector3 startPoint;
-    private int planeCount = 10;
-
-    private void Awake()
+    public class PlaneGenerator : MonoBehaviour
     {
-        GeneratePlane();
-    }
+        [SerializeField] private GameObject planePrefab;
+        [SerializeField] private GameObject obstaclePrefab;
+        [SerializeField] private Vector3 nextPlaneStartPoint;
+        private int planeCount = 10;
 
-    private void GeneratePlane()
-    {
-        for (int i = 0; i < planeCount; i++)
+        private void Awake()
         {
-            GameObject plane = Instantiate(planePrefab, startPoint, Quaternion.identity);
-            startPoint = plane.transform.GetChild(1).transform.position;
-            if (i % 2 == 0)
+            GeneratePlane();
+        }
+
+        private void GeneratePlane()
+        {
+            for (int i = 0; i < planeCount; i++)
             {
-                int randomObstaclePlace = Random.Range(2, 5);
-                Instantiate(obstaclePrefab, plane.transform.GetChild(randomObstaclePlace).transform.position,
-                    Quaternion.identity);
+                GameObject plane = Instantiate(planePrefab, nextPlaneStartPoint, Quaternion.identity);
+                nextPlaneStartPoint = plane.transform.GetChild(4).transform.position;
+                if (i % 2 == 0)
+                {
+                    int randomObstaclePlace = Random.Range(5, 8);
+                    Instantiate(obstaclePrefab, plane.transform.GetChild(randomObstaclePlace).transform.position,
+                        Quaternion.identity);
+                }
             }
         }
     }
