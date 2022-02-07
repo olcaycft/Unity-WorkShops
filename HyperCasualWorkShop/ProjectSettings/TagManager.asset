@@ -10,6 +10,11 @@ TagManager:
   - Player
   - Push
   - Destination
+  - FinishLine
+  - PowerUpArea
+  - SpeedUp
+  - CountUp
+  - DamageUpper
   layers:
   - Default
   - TransparentFX
