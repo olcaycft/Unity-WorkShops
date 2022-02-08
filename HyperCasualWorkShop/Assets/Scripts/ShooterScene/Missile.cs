@@ -3,22 +3,21 @@ using UnityEngine;
 
 namespace ShooterScene
 {
-    public class Missile : MonoBehaviour
+    public class Missile : MonoBehaviour,IMissileDamage
     {
         //[SerializeField] private GameObject missilePrefab;
         [SerializeField] private float speed = 10f;
         [SerializeField] private int damage = 1;
+        [SerializeField] private int tempDamage = 1;
 
         private void Awake()
         {
             Weapon.UpDamage += UpDamage;
         }
-
-        private void OnDestroy()
+        public void OnObjectSpawn()
         {
-            Weapon.UpDamage -= UpDamage;
+            damage = tempDamage;
         }
-
         private void Update()
         {
             HandleForwardMovement();
@@ -38,7 +37,7 @@ namespace ShooterScene
 
         private void UpDamage()
         {
-            damage++;
+            tempDamage++;
         }
     }
 }
