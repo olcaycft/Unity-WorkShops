@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Plane
+namespace FirstScene.Plane
 {
     public class PlaneGenerator : MonoBehaviour
     {

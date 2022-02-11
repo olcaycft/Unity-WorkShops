@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Player
+namespace FirstScene.Player
 {
     public class Movement : MonoBehaviour
     {
