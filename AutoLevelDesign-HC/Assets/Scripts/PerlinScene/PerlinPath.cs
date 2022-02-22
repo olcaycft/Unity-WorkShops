@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -51,13 +52,13 @@ namespace PerlinScene
 
         private void GeneratePath()
         {
-            var node = CreateNodeFromPencil();
-            path.Add(node);
+            //var node = CreateNodeFromPencil();
+            //path.Add(node);
 
             for (int i = 0; i < nodeCount; i++)
             {
                 pencil.position += pencil.forward * nodeDistance;
-                node = CreateNodeFromPencil();
+                var node = CreateNodeFromPencil();
                 path.Add(node);
             }
 
@@ -85,23 +86,24 @@ namespace PerlinScene
                 if (i > 0)
                 {
                     pencil.position += pencil.forward * nodeDistance;
-                }
+                
 
                 var perlinX = Mathf.PerlinNoise(perlinMoveSpeedX * i * 0.01f, 0f);
                 var perlinY = Mathf.PerlinNoise(0f, perlinMoveSpeedY * i * 0.01f);
 
+
                 var distortionX = Mathf.Lerp(-1f, 1f, perlinX) * distortionRateX;
                 var distortionY = Mathf.Lerp(-1f, 1f, perlinY) * distortionRateY;
                 pencil.position = new Vector3(distortionX, distortionY, pencil.position.z);
-
+                }
                 var moveDirection = pencil.position - prevPencilPosition;
                 moveDirection.Normalize();
                 var nodeRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
+                
                 var node = path[i];
                 node.position = pencil.position;
                 node.rotation = transform.rotation;
-
+                
 
                 if (i > 0)
                 {
