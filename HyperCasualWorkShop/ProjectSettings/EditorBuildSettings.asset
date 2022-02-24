@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Way.unity
+    path: Assets/Scenes/Scenes/Way.unity
     guid: 6b752570cc581714fb15120c79a3afd6
   - enabled: 1
-    path: Assets/Scenes/MobControlWorkShop.unity
+    path: Assets/Scenes/Scenes/MobControlWorkShop.unity
     guid: 6ddae0317aeff704a910488e26a3cd42
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Stairs.unity
+    path: Assets/Scenes/Scenes/Stairs.unity
     guid: cae2a48cb31ead041aef608141edabe8
   m_configObjects: {}
