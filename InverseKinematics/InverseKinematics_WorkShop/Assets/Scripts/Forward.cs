@@ -9,6 +9,6 @@ public class Forward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += Vector3.forward*0.5f*Time.deltaTime;
+        gameObject.transform.position += Vector3.forward*1f*Time.deltaTime;
     }
 }
