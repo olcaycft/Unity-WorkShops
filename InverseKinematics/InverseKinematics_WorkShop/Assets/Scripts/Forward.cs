@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Forward : MonoBehaviour
 {
-    
+    [SerializeField] private float forwardSpeed;
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += Vector3.forward*1f*Time.deltaTime;
+        gameObject.transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
     }
 }
