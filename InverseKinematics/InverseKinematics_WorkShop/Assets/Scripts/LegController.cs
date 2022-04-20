@@ -1,17 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
-using DG.Tweening;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class LegController : MonoBehaviour
 {
     [SerializeField] private Transform rightLeg;
     [SerializeField] private Transform leftLeg;
-    [SerializeField] private float footStepTimer = 0.5f;
+    [SerializeField] private float footStepTimer = 1f;
     [SerializeField] private List<Transform> pointList = new List<Transform>();
 
 
@@ -19,9 +13,9 @@ public class LegController : MonoBehaviour
     [SerializeField] private Vector3 curveOffSet;
     [SerializeField] private float timer;
 
-    [SerializeField] private bool isLeftStep = true;
-    [SerializeField] private bool isRightStep;
-    [SerializeField] private int index;
+    private bool isLeftStep = true;
+    private bool isRightStep;
+    private int index;
     private bool isOneStepComplete;
 
     private void Update()
@@ -41,8 +35,6 @@ public class LegController : MonoBehaviour
             if (isLeftStep) LeftFootStep();
             if (isRightStep) RightFootStep();
         }
-        
-        
     }
 
     private void LeftFootStep()
